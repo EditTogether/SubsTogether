@@ -1,4 +1,4 @@
-# NotOnlyFans前端说明文档
+# SubsTogether 前端说明文档
 
 修改hooks。
 

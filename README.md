@@ -1,6 +1,6 @@
-# NotOnlyFans
+# SubsTogether
 
-NotOnlyFans is an open source, self-hosted digital content subscription platform like `onlyfans.com`. The difference, however, is that it uses cryptocurrency (ETH) for payment, so the content will no longer be judged by the payment platform and credit card companies.
+SubsTogether is an open source, self-hosted digital content subscription platform like `onlyfans.com`. The difference, however, is that it uses cryptocurrency (ETH) for payment, so the content will no longer be judged by the payment platform and credit card companies.
 
 [简体中文](README.cn.md)
 
@@ -126,4 +126,4 @@ Access at this point is ready for testing.
 1. Fill in the address of the deployed contract in `www/api/config/app.php` in the corresponding place
 
 
-Translated with www.DeepL.com/Translator 
+Translated with www.DeepL.com/Translator  

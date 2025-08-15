@@ -10,7 +10,7 @@ class AppState
 {
     lianmi_contract = process.env.REACT_APP_CONTRACT;
     
-    @observable appname = "NotOnlyFans";  
+    @observable appname = "SubsTogether";  
     @observable domain = "notonlyfans.vip";  
     
     @observable darkMode = false;
