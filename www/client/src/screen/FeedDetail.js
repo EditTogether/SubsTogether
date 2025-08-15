@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 // Link not used directly
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import Column3Layout from '../component/Column3Layout'; // Assumed refactored or handles its own styling
 import DocumentTitle from 'react-document-title';
@@ -13,7 +13,7 @@ import BackButton from '../component/BackButton'; // Assumed refactored or handl
 import { Spinner, Intent, NonIdealState } from "@blueprintjs/core"; // For loading/error states
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class FeedDetail extends Component

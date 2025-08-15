@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter, Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { Colors, Icon, RadioGroup, Radio } from "@blueprintjs/core";
 // import LMIcon from '../Icon';
@@ -15,7 +15,7 @@ import FeedText from '../component/FeedText';
 import { isApiOk, showApiError } from '../util/Function';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class ContributeItem extends Component

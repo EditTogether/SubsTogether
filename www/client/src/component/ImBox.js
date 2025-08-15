@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import RND from 'react-rnd';
 import { isApiOk, showApiError, toInt } from '../util/Function';
 import { Icon, Colors } from '@blueprintjs/core';
@@ -10,7 +10,7 @@ import UserLink from './UserLink';
 import MessageItem from '../component/MessageItem'; 
 import Sockette from 'sockette';
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class ImBox extends Component

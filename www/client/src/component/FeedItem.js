@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; // Fragment removed as it's not explicitly used
 import { observer , inject } from 'mobx-react';
 import { withRouter, Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import MyTime from '../component/MyTime';
 // Blueprint Icon might still be used by FeedActionsMenu or other sub-components. Colors might be needed for LMIcon.
@@ -19,7 +19,7 @@ import FeedMedia from './FeedMedia';
 
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class FeedItem extends Component

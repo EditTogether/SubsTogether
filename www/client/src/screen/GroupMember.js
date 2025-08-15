@@ -2,7 +2,7 @@ import React, { Component,Fragment } from 'react';
 import { observer , inject } from 'mobx-react';
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Callout , Intent, Spinner, NonIdealState } from "@blueprintjs/core";
 
@@ -15,7 +15,7 @@ import ActivityLink from '../util/ActivityLink';
 import { toast , showApiError , inGroup, isApiOk } from '../util/Function';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class GroupMember extends Component

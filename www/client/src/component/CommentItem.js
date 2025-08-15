@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'; // Fragment is used
 import { observer , inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Linkify from 'react-linkify';
 
 import { Icon, Colors } from "@blueprintjs/core"; // Colors might be needed for Icon
@@ -12,7 +12,7 @@ import UserAvatar from '../component/UserAvatar'; // Assumed refactored
 import { isApiOk, showApiError, toast } from '../util/Function';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class CommentItem extends Component

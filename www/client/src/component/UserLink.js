@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter, Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { toInt } from '../util/Function';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class UserLink extends Component

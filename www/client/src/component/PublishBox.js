@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; // Fragment removed, Link not used directly
 import { observer , inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { sprintf } from 'sprintf-js';
 import { Icon, TextArea, Button, Intent, Colors, Switch } from "@blueprintjs/core"; // Popover, Position, PopoverInteractionKind removed as not directly used by PublishBox structure
 import { handeleBooleanGlobal, groupsToId, toast, handeleStringGlobal, showApiError, isApiOk } from '../util/Function';
@@ -11,7 +11,7 @@ import Dropzone from 'react-dropzone'; // External component
 import ReactFileReader from 'react-file-reader'; // External component
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class PublishBox extends Component

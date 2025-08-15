@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { Menu , MenuItem, Popover, PopoverInteractionKind, Position, Icon } from "@blueprintjs/core";
 import { isApiOk, toInt, toast, showApiError } from '../util/Function';
 
-@translate()
+@withTranslation()
 @inject("store")
 @withRouter
 @observer

@@ -3,14 +3,14 @@ import { observer , inject } from 'mobx-react';
 // Link not used directly
 import { withRouter } from 'react-router-dom';
 // translate not used directly, but HOC still applied
-import { translate } from 'react-i18next'; 
+import { withTranslation } from 'react-i18next'; 
 
 import Header from './Header'; // Assumed refactored
 // ScrollTopView was imported but not used in the original render
 import FloatEditor from '../component/FloatEditor'; // Positioned fixed/absolute by itself
 import ImBox from '../component/ImBox'; // Positioned fixed/absolute by itself
 
-@translate()
+@withTranslation()
 @inject("store")
 @withRouter
 @observer

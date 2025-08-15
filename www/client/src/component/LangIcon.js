@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { Menu , MenuItem, Popover, PopoverInteractionKind, Position } from "@blueprintjs/core";
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 
-@translate()
+@withTranslation()
 @observer
 export default class LangIcon extends Component
 {

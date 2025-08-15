@@ -1,13 +1,13 @@
 import React, { Component,Fragment } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter, Link  } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import UserLink from '../component/UserLink'; 
 import UserAvatar from '../component/UserAvatar';
 import { toast, isApiOk, showApiError, toInt } from '../util/Function';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class MemberItem extends Component
