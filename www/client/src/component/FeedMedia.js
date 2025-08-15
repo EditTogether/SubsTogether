@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Button, Icon, Colors } from "@blueprintjs/core"; // Added Colors for fallback icon color
 import ModalImage from "react-modal-image"; // External component, styling is mostly internal
 import { toast } from '../util/Function';
@@ -30,7 +30,7 @@ const safeJsonParse = (jsonString, defaultValue = null) => {
 };
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class FeedMedia extends Component {

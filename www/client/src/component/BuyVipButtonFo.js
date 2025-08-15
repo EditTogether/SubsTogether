@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import { Button, Intent, Spinner, Overlay, Icon } from "@blueprintjs/core";
 import { toast , showApiError, inGroup, isApiOk } from '../util/Function';
 import QRImage from '../component/QRImage';
@@ -12,7 +12,7 @@ import { sprintf } from 'sprintf-js';
 // import ABI from '../util/ABI';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class BuyVipButton extends Component

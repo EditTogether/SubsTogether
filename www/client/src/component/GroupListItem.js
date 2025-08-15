@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter, Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Web3 from 'web3';
 import { Button } from "@blueprintjs/core"; // Icon removed as it's not used directly
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store") // store is injected but not used.
 @observer
 export default class GroupListItem extends Component

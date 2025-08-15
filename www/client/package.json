@@ -1,7 +1,13 @@
 {
-  "name": "lianmiweb",
+  "name": "substogether-web",
   "version": "0.1.0",
   "private": true,
+  "description": "SubsTogether — open-source, self-hosted digital content subscription platform (crypto-enabled).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EditTogether/SubsTogether.git"
+  },
+  "homepage": ".",
   "dependencies": {
     "@blueprintjs/core": "^2.3.1",
     "axios": "^1.9.0",

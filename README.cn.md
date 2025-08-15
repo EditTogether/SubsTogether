@@ -1,6 +1,6 @@
-# NotOnlyFans
+# SubsTogether
 
-NotOnlyFans 是一个开源的、可以自己架设的类似 `onlyfans.com` 的数字内容订阅平台。但不同的是，它采用加密货币(ETH)进行支付，因此内容不会再由支付平台和信用卡公司来决定。
+SubsTogether 是一个开源的、可以自己架设的类似 `onlyfans.com` 的数字内容订阅平台。但不同的是，它采用加密货币(ETH)进行支付，因此内容不会再由支付平台和信用卡公司来决定。
 
 ## 截图
 

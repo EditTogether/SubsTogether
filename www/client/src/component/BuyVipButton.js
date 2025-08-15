@@ -1,7 +1,7 @@
 import React, { Component,Fragment } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Button, Intent, Spinner } from "@blueprintjs/core";
 import { toast , showApiError, inGroup } from '../util/Function';
 
@@ -9,7 +9,7 @@ import Web3 from 'web3';
 import ABI from '../util/ABI';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class BuyVipButton extends Component

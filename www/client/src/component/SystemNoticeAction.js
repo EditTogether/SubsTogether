@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter, Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import UserAvatar from './UserAvatar';
 import UserLink from './UserLink';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class SystemNoticeAction extends Component

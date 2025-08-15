@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Button } from "@blueprintjs/core";
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class BackButton extends Component

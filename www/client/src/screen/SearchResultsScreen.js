@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import DocumentTitle from 'react-document-title';
 import { Spinner, NonIdealState, Intent } from '@blueprintjs/core';
 
@@ -11,7 +11,7 @@ import Column3Layout from '../component/Column3Layout'; // Assuming a similar la
 import UserCard from '../component/UserCard'; // Optional: if you want to show user card on search page
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class SearchResultsScreen extends Component {

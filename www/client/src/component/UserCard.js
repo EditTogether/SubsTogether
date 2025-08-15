@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 // Link is not directly used, UserLink handles it.
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import UserLink from './UserLink';
 import UserAvatar from './UserAvatar'; // Assuming UserAvatar is updated for Tailwind size prop
 import { toInt } from '../util/Function';
 
-@translate()
+@withTranslation()
 @inject("store")
 @withRouter
 @observer

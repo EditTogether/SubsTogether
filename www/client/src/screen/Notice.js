@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 // Link not used directly
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import Column3Layout from '../component/Column3Layout'; // Assumed refactored
 import UserCard from '../component/UserCard'; // Assumed refactored
@@ -14,7 +14,7 @@ import { Intent, Spinner, NonIdealState } from '@blueprintjs/core';
 
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class Notice extends Component

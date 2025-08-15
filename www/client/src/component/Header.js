@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 // import { Link } from "react-router-dom"; // ActivityLink handles Link
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import ActivityLink from '../util/ActivityLink';
 import { Button, InputGroup, Position, Tooltip } from "@blueprintjs/core"; // Removed AnchorButton as it's not used directly
@@ -13,7 +13,7 @@ import UserAvatar from './UserAvatar';
 import { toInt, isApiOk } from '../util/Function';
 // import Icon from '../Icon'; // Icon component usage seems to be within ActivityLink or not present directly
 
-@translate()
+@withTranslation()
 @inject("store")
 @withRouter
 @observer

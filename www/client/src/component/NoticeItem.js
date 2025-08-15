@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import UserAvatar from './UserAvatar'; // Assumed refactored
 import UserLink from './UserLink';   // Assumed refactored
 import Linkify from 'react-linkify';
@@ -11,7 +11,7 @@ import { toInt } from '../util/Function';
 import SystemNoticeAction from '../component/SystemNoticeAction'; // Specific component for system notices
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class NoticeItem extends Component

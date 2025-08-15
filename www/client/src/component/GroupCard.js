@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 // Link is not used directly in this component
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 // Icon from blueprint is not used directly
 import Web3 from 'web3';
 // import BuyVipButton from '../component/BuyVipButton'; // This was commented out
 
-@translate()
+@withTranslation()
 @inject("store") // store is injected but not directly used in render, only t and group from props.
 @withRouter
 @observer

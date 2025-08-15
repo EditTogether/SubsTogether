@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter, Link } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store") // store is injected but not used. Could be removed if not planned for future use.
 @observer
 export default class UserAvatar extends Component

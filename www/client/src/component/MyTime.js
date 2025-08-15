@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer , inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import TimeAgo from 'react-timeago';
 import cnStrings from 'react-timeago/lib/language-strings/zh-CN';
@@ -11,7 +11,7 @@ import jaStrings from 'react-timeago/lib/language-strings/ja';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 @withRouter
-@translate()
+@withTranslation()
 @inject("store")
 @observer
 export default class MyTime extends Component
