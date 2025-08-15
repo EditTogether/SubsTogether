@@ -145,7 +145,7 @@ export default class Feed extends Component
                                                     <img src={photo.cover || photo.thumb} alt={`${t('图片附件')} ${index + 1}`} className="w-24 h-24 object-cover rounded border border-gray-200 dark:border-gray-600" />
                                                 </a>
                                             ))}
-                                        </ul>
+                                        </div>
                                     )}
                                     {item.files && item.files.length > 0 && (
                                         <ul className="mt-2 space-y-1">
