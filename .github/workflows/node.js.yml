@@ -22,10 +22,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-        cache-dependency-path: 'client/yarn.lock'
+        cache-dependency-path: 'www/client/yarn.lock'
     - name: Install dependencies
-      run: cd client && yarn install
+      run: cd www/client && yarn install
     - name: Build project
-      run: cd client && yarn build
+      run: cd www/client && yarn build
     - name: Run tests
-      run: cd client && yarn test --passWithNoTests
+      run: cd www/client && yarn test --passWithNoTests
