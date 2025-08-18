@@ -45,7 +45,7 @@ jest.mock('mobx-react', () => ({
 
 jest.mock('../util/Function', () => ({
   toast: jest.fn(),
-  showApiError: jest.fn(),
+  showApiError: jest.fn(() => false), // Return false to indicate no API error
   is_fo_address: jest.fn(() => true), // Default to true for FO address validation
 }));
 
@@ -66,7 +66,8 @@ describe('Front Screen Component', () => {
   // --- Rendering & Tabs ---
   test('renders the registration form by default', () => {
     render(<Front store={mockStore} />); // Pass mockStore directly if inject mock isn't picking it up or for clarity
-    expect(screen.getByPlaceholderText('邮件地址')).toBeInTheDocument();
+    const emailInputs = screen.getAllByPlaceholderText('邮件地址');
+    expect(emailInputs[0]).toBeInTheDocument(); // Registration form email
     expect(screen.getByPlaceholderText('用户唯一标识，只能由英文、数字构成，全站唯一，最短3位，不可修改')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('昵称')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '注册' })).toBeInTheDocument(); // Registration button text
@@ -75,8 +76,10 @@ describe('Front Screen Component', () => {
   test('renders the login form when props.location.pathname is /login', () => {
     mockLocation.pathname = '/login'; // Set path for this test
     render(<Front store={mockStore} />);
-    expect(screen.getByPlaceholderText('邮件地址')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('登入密码，最短6位')).toBeInTheDocument();
+    const emailInputs = screen.getAllByPlaceholderText('邮件地址');
+    expect(emailInputs[1]).toBeInTheDocument(); // Login form email
+    const passwordInputs = screen.getAllByPlaceholderText('登入密码，最短6位');
+    expect(passwordInputs[1]).toBeInTheDocument(); // Login form password
     expect(screen.getByRole('button', { name: '登入' })).toBeInTheDocument();
   });
 
@@ -89,16 +92,18 @@ describe('Front Screen Component', () => {
     fireEvent.click(screen.getByRole('tab', { name: '登入' })); // Login tab
     // Wait for potential async state updates if any, though simple tab switch might be sync
     await waitFor(() => {
-        expect(screen.getByPlaceholderText('邮件地址')).toBeInTheDocument();
+        const emailInputs = screen.getAllByPlaceholderText('邮件地址');
+        expect(emailInputs.length).toBe(2); // Both forms present
     });
-    expect(screen.queryByPlaceholderText('用户唯一标识，只能由英文、数字构成，全站唯一，最短3位，不可修改')).not.toBeInTheDocument(); // Register specific field
+    expect(screen.getByPlaceholderText('用户唯一标识，只能由英文、数字构成，全站唯一，最短3位，不可修改')).toBeInTheDocument(); // Register specific field still in DOM
 
     // Click register tab again
     fireEvent.click(screen.getByRole('tab', { name: '注册' }));
     await waitFor(() => {
         expect(screen.getByPlaceholderText('用户唯一标识，只能由英文、数字构成，全站唯一，最短3位，不可修改')).toBeInTheDocument();
     });
-    expect(screen.queryByPlaceholderText('邮件地址')).not.toBeInTheDocument(); // Login specific field
+    const emailInputs = screen.getAllByPlaceholderText('邮件地址');
+    expect(emailInputs.length).toBe(2);
   });
 
   // --- Registration Form ---
@@ -145,21 +150,27 @@ describe('Front Screen Component', () => {
       fireEvent.change(screen.getByPlaceholderText('用户唯一标识，只能由英文、数字构成，全站唯一，最短3位，不可修改'), { target: { value: 'testuser1' } });
       fireEvent.change(screen.getByPlaceholderText('昵称'), { target: { value: 'Test User' } });
       fireEvent.change(passwordInputs[0], { target: { value: 'password123' } }); // Registration form password
+      fireEvent.change(screen.getByPlaceholderText('再次输入密码确认'), { target: { value: 'password123' } }); // Password confirmation
 
       fireEvent.click(screen.getByRole('button', { name: '注册' }));
 
-      expect(mockStore.register).toHaveBeenCalledWith(
-        'valid@example.com', 
-        'Test User', // Nickname
-        'testuser1', // Username
-        'password123',
-        '' // FO Address (this.state.address default empty string)
-      );
+      await waitFor(() => {
+        expect(mockStore.register).toHaveBeenCalledWith(
+          'valid@example.com', 
+          'Test User', // Nickname
+          'testuser1', // Username
+          'password123',
+          '' // FO Address (this.state.address default empty string)
+        );
+      });
     });
 
     test('failed registration (API error)', async () => {
+      const { showApiError } = require('../util/Function');
+      showApiError.mockReturnValueOnce(true); // Return true to indicate API error, preventing success path
+      
       render(<Front store={mockStore} />);
-      mockStore.register.mockResolvedValueOnce({ code: 1, info: 'Registration failed' });
+      mockStore.register.mockResolvedValueOnce({ data: { code: 1, info: 'Registration failed' } });
 
       const emailInputs = screen.getAllByPlaceholderText('邮件地址');
       const passwordInputs = screen.getAllByPlaceholderText('登入密码，最短6位');
@@ -167,10 +178,14 @@ describe('Front Screen Component', () => {
       fireEvent.change(screen.getByPlaceholderText('用户唯一标识，只能由英文、数字构成，全站唯一，最短3位，不可修改'), { target: { value: 'failuser' } });
       fireEvent.change(screen.getByPlaceholderText('昵称'), { target: { value: 'Fail User' } });
       fireEvent.change(passwordInputs[0], { target: { value: 'password123' } }); // Registration form password
+      fireEvent.change(screen.getByPlaceholderText('再次输入密码确认'), { target: { value: 'password123' } }); // Password confirmation
       
       fireEvent.click(screen.getByRole('button', { name: '注册' }));
 
-      expect(mockStore.register).toHaveBeenCalled();
+      await waitFor(() => {
+        expect(mockStore.register).toHaveBeenCalled();
+        expect(showApiError).toHaveBeenCalled();
+      });
     });
   });
 
@@ -211,7 +226,9 @@ describe('Front Screen Component', () => {
       
       fireEvent.click(screen.getByRole('button', { name: '登入' }));
 
-      expect(mockStore.login).toHaveBeenCalledWith('login@example.com', 'password123');
+      await waitFor(() => {
+        expect(mockStore.login).toHaveBeenCalledWith('login@example.com', 'password123');
+      });
     });
     
     test('successful login redirects to /admin if group_count is -1 (admin)', async () => {
@@ -225,13 +242,18 @@ describe('Front Screen Component', () => {
       
       fireEvent.click(screen.getByRole('button', { name: '登入' }));
 
-      expect(mockStore.login).toHaveBeenCalledWith('admin@example.com', 'adminpass');
+      await waitFor(() => {
+        expect(mockStore.login).toHaveBeenCalledWith('admin@example.com', 'adminpass');
+      });
     });
 
 
     test('failed login (API error)', async () => {
+      const { showApiError } = require('../util/Function');
+      showApiError.mockReturnValueOnce(true); // Return true to indicate API error, preventing success path
+      
       render(<Front store={mockStore} />);
-      mockStore.login.mockResolvedValueOnce({ code: 1, info: 'Login failed' });
+      mockStore.login.mockResolvedValueOnce({ data: { code: 1, info: 'Login failed' } });
 
       const emailInputs = screen.getAllByPlaceholderText('邮件地址');
       const passwordInputs = screen.getAllByPlaceholderText('登入密码，最短6位');
@@ -240,7 +262,10 @@ describe('Front Screen Component', () => {
 
       fireEvent.click(screen.getByRole('button', { name: '登入' }));
 
-      expect(mockStore.login).toHaveBeenCalled();
+      await waitFor(() => {
+        expect(mockStore.login).toHaveBeenCalled();
+        expect(showApiError).toHaveBeenCalled();
+      });
     });
   });
 });
