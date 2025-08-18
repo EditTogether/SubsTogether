@@ -13,7 +13,7 @@
     "axios": "^1.9.0",
     "fibos.js": "^0.3.11",
     "file-saver": "^2.0.2",
-    "i18next": "^21.0.0",
+    "i18next": "^23.2.3",
     "i18next-browser-languagedetector": "^8.1.0",
     "i18next-http-backend": "^3.0.2",
     "mobx": "^5.15.7",
@@ -50,8 +50,17 @@
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios|i18next|react-i18next)/)"
+    ],
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"]
+  },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.27.1",
+    "@testing-library/jest-dom": "^6.7.0",
+    "@testing-library/react": "^12.1.5",
     "autoprefixer": "^10.4.21",
     "clipboard-cli": "^2.0.0",
     "customize-cra": "^0.8.0",
