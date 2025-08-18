@@ -87,7 +87,7 @@ docker exec -it ${container_id} /bin/bash
 ### Initialize the web front end
 
 ```bash
-cd /app/client/ && yarn install && yarn build
+cd /app/client/ && yarn add sass && yarn install && yarn build
 ```
 
 ### Initialize the API
@@ -123,4 +123,4 @@ Access at this point is ready for testing.
 
 1. modify `www/api/contract/group.js` and `www/api/contract/deploy.js`
 1. deploy via `deploy.js`
-1. Fill in the address of the deployed contract in `www/api/config/app.php` in the corresponding place 
+1. Fill in the address of the deployed contract in `www/api/config/app.php` in the corresponding place  

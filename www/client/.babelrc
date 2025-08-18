@@ -1,0 +1,19 @@
+{
+  "presets": [
+    "react-app"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        ["react-app", { "runtime": "automatic" }]
+      ],
+      "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        "@babel/plugin-transform-modules-commonjs"
+      ]
+    }
+  }
+}

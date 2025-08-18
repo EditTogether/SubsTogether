@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'; // For extended matchers like .toHaveAttribute
 
 // Component to test
-import { UserAvatar } from './UserAvatar'; // Assuming UserAvatar is exported directly for testing
+import UserAvatar from './UserAvatar';
 
 // Mock dependencies
 jest.mock('react-router-dom', () => ({
@@ -17,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('react-i18next', () => ({
-  translate: () => Component => {
+  withTranslation: () => Component => {
     Component.defaultProps = { ...Component.defaultProps, t: key => key };
     return Component;
   },
